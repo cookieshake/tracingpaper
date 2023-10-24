@@ -91,7 +91,7 @@ class MangaOcrEngine(GetTextFromBoxPort):
             x = self._preprocess(img)
             x = self.model.generate(x[None], max_length=300, return_dict_in_generate=True, output_scores=True)
             transition_scores = self.model.compute_transition_scores(
-                x.sequences, x.scores, normalize_logits=True
+                x.sequences, x.scores, x.beam_indices, normalize_logits=False
             )
             x = self.tokenizer.decode(x.sequences[0], skip_special_tokens=True)
             x = self._post_process(x)
