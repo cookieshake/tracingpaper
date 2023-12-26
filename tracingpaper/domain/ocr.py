@@ -40,9 +40,9 @@ class Box(BaseModel):
         else:
             x_list = sorted([self.top_left.x, self.top_right.x, self.bottom_left.x, self.bottom_right.x])
             y_list = sorted([self.top_left.y, self.top_right.y, self.bottom_left.y, self.bottom_right.y])
-            min_x = x_list[0]
+            min_x = max(x_list[0], 0)
             max_x = x_list[-1]
-            min_y = y_list[0]
+            min_y = max(y_list[0], 0)
             max_y = y_list[-1]
             return Box(
                 top_left=Point(x=min_x, y=min_y),

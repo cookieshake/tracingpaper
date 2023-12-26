@@ -15,8 +15,11 @@ class ReadImageFile(GetImagePort):
         return image
 
 class ScreenCapture(GetImagePort):
+    def __init__(self, monitor: int) -> None:
+        self.monitor = monitor
+        
     def get_image(self) -> cv2.typing.MatLike:
         with mss() as sct:
-            monitor = sct.monitors[2]
+            monitor = sct.monitors[self.monitor]
             image = np.array(sct.grab(monitor))[:, :, :3]
             return image

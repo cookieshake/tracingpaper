@@ -19,3 +19,8 @@ class GetImagePort(metaclass=ABCMeta):
     @abstractmethod
     def get_image(self) -> cv2.typing.MatLike:
         pass
+
+class GUIPort(metaclass=ABCMeta):
+    @abstractmethod
+    def draw_text_boxes_to_screen(self, textboxes: list[TextBox]):
+        pass

@@ -87,7 +87,7 @@ class MangaOcrEngine(GetTextFromBoxPort):
         for box in boxes:
             boxx = box.get_container_box()
             img = image[boxx.top_left.y:boxx.bottom_left.y, boxx.top_left.x:boxx.top_right.x]
-
+            
             x = self._preprocess(img)
             x = self.model.generate(x[None], max_length=300, return_dict_in_generate=True, output_scores=True)
             transition_scores = self.model.compute_transition_scores(
@@ -116,8 +116,6 @@ class MangaOcrEngine(GetTextFromBoxPort):
 
         return text
                 
-
-
 
 
 if __name__ == "__main__":
